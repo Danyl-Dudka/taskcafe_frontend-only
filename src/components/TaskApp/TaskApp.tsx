@@ -176,22 +176,21 @@ export default function TaskApp() {
             return new Date(a.date).getTime() - new Date(b.date).getTime();
         }
         if (sortType === 'priority') {
-            const priorityOptions = ['Low', 'Medium', 'High', 'Urgent'];
-            return priorityOptions.indexOf(a.priority) - priorityOptions.indexOf(b.priority);
+            const priorityOrders = ['Low', 'Medium', 'High', 'Urgent'];
+            return priorityOrders.indexOf(a.priority) - priorityOrders.indexOf(b.priority)
         }
         if (sortType === 'name') {
             return a.name.localeCompare(b.name);
         }
         return 0;
     })
-
     return (
         <div className="taskapp_container">
             <div className="taskapp_header">
                 <h2>Personal Projects</h2>
                 <div className="taskapp_buttons">
                     {showFilterOptions ?
-                        <div className='filter_options'>
+                        <div className='control_options'>
                             <Cascader options={cascaderOptions} onChange={handleChange} placeholder="Select filters" multiple />
                             <CircleX style={{ color: 'red' }} size={24} className="circle_btn" onClick={() => { setShowFilterOptions(false); setFilterValues([]); }} />
                         </div>
@@ -199,7 +198,7 @@ export default function TaskApp() {
                         <Funnel size={36} className="filter_btn" onClick={() => setShowFilterOptions(true)} />
                     }
                     {showSortingOptions ?
-                        <div className='filter_options'>
+                        <div className='control_options'>
                             <Select
                                 style={{ width: 180 }}
                                 placeholder="Select the method"
