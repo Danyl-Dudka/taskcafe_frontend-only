@@ -117,7 +117,7 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
 
                                     <div className='project_description'>
                                         <span className="desc_label">Description:</span>
-                                        {project.description}
+                                        <p className='desc_paragraph'>{project.description}</p>
                                     </div>
 
                                     <span className={`status_label ${project.status}`}>

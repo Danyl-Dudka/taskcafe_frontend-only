@@ -42,8 +42,8 @@
     font-size: 0.9rem;
     line-height: 1.4;
     margin-bottom: 0.5rem;
-    max-height: 3.6em;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
     text-overflow: ellipsis;
 }
 
@@ -51,6 +51,12 @@
     font-weight: 600;
     color: #6b7280;
     margin-right: 4px;
+}
+
+.desc_paragraph {
+    width: 270px !important;
+    margin-top: 4px;
+    font-style: italic;
 }
 
 .project_priority {
@@ -252,6 +258,7 @@
     transform-origin: center;
 }
 
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -272,9 +279,12 @@
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1)
     }
