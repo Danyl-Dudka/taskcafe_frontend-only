@@ -25,6 +25,7 @@ export default function TaskApp() {
     const [showFilterOptions, setShowFilterOptions] = useState<boolean>(false);
     const [sortType, setSortType] = useState<string>('');
     const [showSortingOptions, setShowSortingOptions] = useState<boolean>(false);
+    const [query, setQuery] = useState<string>('');
     const { Option } = Select;
     useEffect(() => {
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -152,6 +153,9 @@ export default function TaskApp() {
     ]
 
     const filteredProjects = projects.filter((project) => {
+
+        const matchName = project.name.toLowerCase().includes(query.toLowerCase())
+
         const matchStatus = filterValues.includes('todo') || filterValues.includes('in-progress')
             ? filterValues.includes(project.status)
             : project.status !== 'done';
@@ -160,7 +164,7 @@ export default function TaskApp() {
             ? filterValues.includes(project.priority)
             : project.status !== 'done';
 
-        return matchStatus && matchPriority
+        return matchName && matchStatus && matchPriority
     });
 
     const handleChange = (value: string[][]) => {
@@ -184,11 +188,18 @@ export default function TaskApp() {
         }
         return 0;
     })
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value)
+
+    }
+
     return (
         <div className="taskapp_container">
             <div className="taskapp_header">
                 <h2>Personal Projects</h2>
                 <div className="taskapp_buttons">
+                    <input className="taskapp_input" placeholder="Search by name" onChange={handleSearch} value={query}></input>
                     {showFilterOptions ?
                         <div className='control_options'>
                             <Cascader options={cascaderOptions} onChange={handleChange} placeholder="Select filters" multiple />
@@ -217,6 +228,10 @@ export default function TaskApp() {
                 </div>
             </div>
             <TaskList projects={sortedProjects} onDelete={handleDeleteTask} onView={openViewModal} onEdit={handleEditTask} />
+
+            {sortedProjects.length === 0 && (
+                <div className="no_result">No result</div>
+            )}
 
             <NewTaskModal
                 open={isModalOpen}
