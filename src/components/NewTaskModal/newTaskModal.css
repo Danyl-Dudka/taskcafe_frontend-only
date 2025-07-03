@@ -162,3 +162,7 @@
     white-space: pre-wrap;
     word-break: break-word;
 }
+.error {
+    margin-bottom: 8px;
+    color: red;
+}
