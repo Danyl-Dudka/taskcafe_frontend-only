@@ -18,6 +18,7 @@ export default function TaskApp() {
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState('');
     const [date, setDate] = useState<Dayjs | null>(null);
+    const [deadline, setDeadline] = useState<Dayjs | null>(null);
     const [status, setStatus] = useState<string>('todo')
     const [viewTask, setViewTask] = useState<ProjectViewData | null>(null);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
@@ -67,6 +68,7 @@ export default function TaskApp() {
                 priority,
                 status,
                 date: date?.toISOString() ?? '',
+                deadline: deadline?.toISOString() ?? '',
             }
             const updatedProjects = [...projects, newProject];
             setProjects(updatedProjects);
@@ -76,6 +78,7 @@ export default function TaskApp() {
             setPriority('');
             setStatus('todo');
             setDate(null);
+            setDeadline(null)
             setIsModalOpen(false)
         }
     }
@@ -98,6 +101,7 @@ export default function TaskApp() {
         setViewTask({
             ...project,
             date: project.date ? dayjs(project.date) : null,
+            deadline: project.deadline ? dayjs(project.deadline) : null,
         });
         setIsViewModalOpen(true);
     };
@@ -162,7 +166,7 @@ export default function TaskApp() {
 
         const matchPriority = filterValues.includes('Urgent') || filterValues.includes('High') || filterValues.includes('Medium') || filterValues.includes('Low')
             ? filterValues.includes(project.priority)
-            : project.status !== 'done';
+            : true;
 
         return matchName && matchStatus && matchPriority
     });
@@ -241,11 +245,13 @@ export default function TaskApp() {
                 priority={priority}
                 status={status}
                 date={date}
+                deadline={deadline}
                 onChangeProjectName={setProjectName}
                 onChangeDescription={setDescription}
                 onChangeStatus={setStatus}
                 onChangePriority={setPriority}
                 onChangeDate={setDate}
+                onChangeDeadline={setDeadline}
                 onConfirm={handleModalConfirm}
                 onCancel={handleCancel}
             />

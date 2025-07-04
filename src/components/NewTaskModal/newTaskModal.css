@@ -162,7 +162,49 @@
     white-space: pre-wrap;
     word-break: break-word;
 }
+
 .error {
     margin-bottom: 8px;
     color: red;
+}
+
+.select_deadline {
+    width: 100%;
+    max-width: 320px;
+    padding: 8px 12px;
+    height: 40px;
+    font-size: 16px;
+    border: 2px solid #1890ff;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.select_deadline:hover {
+    border-color: #40a9ff;
+    box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+}
+
+.select_deadline:focus,
+.select_deadline:focus-visible {
+    border-color: #096dd9;
+    box-shadow: 0 0 8px rgba(9, 109, 217, 0.7);
+    outline: none;
+}
+
+.select_deadline .ant-picker-input>input {
+    font-size: 16px;
+    color: #333;
+    padding: 6px 8px;
+}
+
+.select_deadline .ant-picker-clear {
+    color: #999;
+}
+
+.select_deadline .ant-picker-suffix {
+    color: #1890ff;
 }

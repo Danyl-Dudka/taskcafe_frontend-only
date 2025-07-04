@@ -11,10 +11,12 @@ export default function NewTaskModal({
     description,
     priority,
     date,
+    deadline,
     onChangeProjectName,
     onChangeDescription,
     onChangePriority,
     onChangeDate,
+    onChangeDeadline,
     onConfirm,
     onCancel
 }: NewTaskModalProps) {
@@ -103,6 +105,13 @@ export default function NewTaskModal({
                     {errors.priority &&
                         <div className="error">{errors.priority}</div>
                     }
+
+                    <DatePicker
+                        value={deadline}
+                        onChange={onChangeDeadline}
+                        className="select_deadline"
+                        placeholder="Select the deadline!"
+                    />
 
                     <div className="modal-actions">
                         <Button type="primary" onClick={handleConfirm}>Create</Button>

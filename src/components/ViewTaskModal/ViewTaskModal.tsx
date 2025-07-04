@@ -96,6 +96,10 @@ export default function ViewTaskModal({ open, onCancel, task }: ViewTaskModalPro
                             </>
                         )}
                     </div>
+                    <div className="view-row">
+                        <strong className="label">Deadline:</strong>
+                        <span className="value">{task.deadline ? task.deadline.format('DD MMM YY') : <span className="deadline">Deadline is not selected!</span>}</span>
+                    </div>
                 </div>
             ) : (
                 <p>No task data available.</p>

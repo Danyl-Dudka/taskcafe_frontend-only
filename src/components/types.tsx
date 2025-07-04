@@ -25,11 +25,13 @@ export interface NewTaskModalProps {
     priority: string;
     status: string;
     date: Dayjs | null;
+    deadline: Dayjs | null;
     onChangeProjectName: (value: string) => void;
     onChangeDescription: (value: string) => void;
     onChangeStatus: (value: string) => void;
     onChangePriority: (value: string) => void;
     onChangeDate: (value: Dayjs | null) => void;
+    onChangeDeadline: (value: Dayjs | null) => void;
     onConfirm: (data?: { name: string; priority: string }) => void;
     onCancel: () => void;
 }
@@ -46,6 +48,7 @@ export interface ProjectFormData {
     date: string;
     priority: string;
     status: string;
+    deadline: string;
 }
 
 export interface ViewTaskModalProps {
@@ -58,6 +61,7 @@ export interface ViewTaskModalProps {
         status: string;
         priority: string;
         date: Dayjs | null;
+        deadline: Dayjs | null;
     } | null;
 }
 
@@ -68,6 +72,7 @@ export interface ProjectViewData {
     status: string;
     priority: string;
     date: Dayjs | null;
+    deadline: Dayjs | null;
 }
 
 export interface DeleteConfirmModalProps {

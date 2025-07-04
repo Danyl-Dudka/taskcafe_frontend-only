@@ -32,17 +32,17 @@
 }
 
 .view-row {
-  display: flex;
-  gap: 14px;
-  align-items: baseline;
-  background: linear-gradient(135deg, #c4c6db, #7d87f5);
-  border-left: 4px solid #6366f1;
-  border-radius: 14px;
-  padding: 16px 20px;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2), 0 2px 8px rgba(0, 0, 0, 0.35);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
-  color: #e8eaf6;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    background: linear-gradient(135deg, #c4c6db, #7d87f5);
+    border-left: 4px solid #6366f1;
+    border-radius: 14px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2), 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    color: #e8eaf6;
 }
 
 
@@ -92,4 +92,8 @@
 .user_select:hover {
     border-color: #8e97f9;
     background-color: #4b5285;
+}
+
+.deadline {
+    color: red;
 }

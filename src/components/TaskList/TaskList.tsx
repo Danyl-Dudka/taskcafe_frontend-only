@@ -70,7 +70,25 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
         <>
             <div className='projects_board'>
                 {projects.map((project, index) => {
-                    const assignedUser = localStorage.getItem(`assignedUser_${project.id}`)
+                    const assignedUser = localStorage.getItem(`assignedUser_${project.id}`);
+
+                    const today = dayjs().startOf('day');
+                    const deadline = dayjs(project.deadline).startOf('day');
+                    const daysLeft = deadline.diff(today, 'day');
+
+                    let deadlineClass = 'deadline-ok';
+                    let deadlineText;
+                    if (daysLeft < 2 && daysLeft > 0) {
+                        deadlineClass = 'deadline-soon';
+                        deadlineText = 'Deadline soon!';
+                    } else if (daysLeft < 1) {
+                        deadlineClass = 'deadline-overdue'
+                        deadlineText = 'Overdue!'
+                    } else if (!deadline.isValid()) {
+                        deadlineClass = 'not_selected'
+                        deadlineText = 'Not selected!'
+                    }
+
                     return (
                         <div key={index}
                             className='project_card'
@@ -129,6 +147,15 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
 
                                     <div className={`project_priority ${project.priority.toLowerCase()}`} >{
                                         project.priority}
+                                    </div>
+
+                                    <div className={`project_deadline ${deadlineClass}`}>
+                                        <div className="deadline_date">
+                                            Deadline: {project.deadline && dayjs(project.deadline).isValid()
+                                                ? dayjs(project.deadline).format('DD MMM YY')
+                                                : true}
+                                        </div>
+                                        <div className="deadline_status_text">{deadlineText}</div>
                                     </div>
 
                                     <button type="button" className='edit_btn' onClick={(e) => {
