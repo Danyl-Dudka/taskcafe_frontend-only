@@ -153,9 +153,13 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
                                         <div className="deadline_date">
                                             Deadline: {project.deadline && dayjs(project.deadline).isValid()
                                                 ? dayjs(project.deadline).format('DD MMM YY')
-                                                : true}
+                                                : 'Not selected!'}
                                         </div>
-                                        <div className="deadline_status_text">{deadlineText}</div>
+                                        <div className="deadline_status_text">{deadlineText}
+                                            {deadline.isValid() && daysLeft >= 0 && (
+                                                <span className='days_left_text'>{daysLeft} day{daysLeft !== 1 ? 's' : ''} left!</span>
+                                            )}
+                                        </div>
                                     </div>
 
                                     <button type="button" className='edit_btn' onClick={(e) => {
@@ -185,4 +189,3 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
         </>
     )
 }
-

@@ -326,6 +326,13 @@
     color: #888;
 }
 
+.days_left_text {
+    font-weight: bold;
+    color: #333;
+    margin-left: 6px;
+}
+
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
