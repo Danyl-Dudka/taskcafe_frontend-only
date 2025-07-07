@@ -28,11 +28,11 @@ export default function LoginForm() {
     return (
         <div className="main">
             <div className="image_hpage">
-                <img src="../../images/login_picture_human.svg" alt="login_picture" className="human_logo" />
+                <img src="/taskcafe_frontend-only/images/login_picture_human.svg" alt="login_picture" className="human_logo" />
             </div>
             <div className="form_wrapper">
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <img src="../../images/taskcafe_main_logo.png" alt="taskcafe-logo" className="main_logo" />
+                    <img src="/taskcafe_frontend-only/images/taskcafe_main_logo.png" alt="taskcafe-logo" className="main_logo" />
                     {isRegistering ? (
                         <RegisterForm />
                     ) : (

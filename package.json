@@ -2,10 +2,13 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://github.com/Danyl-Dudka/taskcafe_frontend-only",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },

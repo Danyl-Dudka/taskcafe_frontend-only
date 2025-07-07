@@ -52,13 +52,15 @@ export default function Header() {
     return (
         <>
             <header>
-                <img className="min_logo" src="../../images/taskcafe.min.svg" alt="taskcafe_min_logo" onClick={() => navigate('/')} />
+                <img className="min_logo" src="/taskcafe_frontend-only/images/taskcafe.min.svg" alt="taskcafe_min_logo" onClick={() => navigate('/')} />
                 <p className='paragraph_logo' onClick={() => navigate('/')}>TaskCafé</p>
                 <div className='navigate_btns'>
                     <button type="button" className='completed_projects_btn' onClick={() => navigate('/completed_projects')}>
+                        <span>Completed projects</span>
                         <BadgeCheck size={36} className='text-white' />
                     </button>
                     <button type="button" className='home_btn' onClick={() => navigate('/')}>
+                        <span>Home</span>
                         <Home size={36} className="text-white" />
                     </button>
 

@@ -1,3 +1,4 @@
+import LoginForm from "../components/LoginForm/LoginForm";
 import { AuthContext } from "../content";
 import { useEffect, useState, type ReactNode } from "react";
 
@@ -9,6 +10,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         if (storedAuth === "true") {
             setIsAuth(true)
         }
+        <LoginForm />
     }, [])
 
     return (

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { toast } from "react-toastify";
 import { statusLabels } from '../types.tsx';
 import DeleteConfirmModal from '../DeleteConfirmModal/DeleteConfirmModal';
-export default function TaskList({ projects, onDelete, onView, onEdit }: ProjectListProps & { onView: (project: any) => void }) {
+export default function TaskList({ projects, onDelete, onView, onEdit, hideDeadline }: ProjectListProps & { onView: (project: any) => void }) {
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
     const [projectToDelete, setProjectToDelete] = useState<string | null>('');
@@ -149,32 +149,34 @@ export default function TaskList({ projects, onDelete, onView, onEdit }: Project
                                         project.priority}
                                     </div>
 
-                                    <div className={`project_deadline ${deadlineClass}`}>
-                                        <div className="deadline_date">
-                                            Deadline: {project.deadline && dayjs(project.deadline).isValid()
-                                                ? dayjs(project.deadline).format('DD MMM YY')
-                                                : 'Not selected!'}
+                                    {!hideDeadline && (
+                                        <div className={`project_deadline ${deadlineClass}`}>
+                                            <div className="deadline_date">
+                                                Deadline: {project.deadline && dayjs(project.deadline).isValid()
+                                                    ? dayjs(project.deadline).format('DD MMM YY')
+                                                    : 'Not selected!'}
+                                            </div>
+                                            <div className="deadline_status_text">{deadlineText}
+                                                {deadline.isValid() && daysLeft >= 0 && (
+                                                    <span className='days_left_text'>{daysLeft} day{daysLeft !== 1 ? 's' : ''} left!</span>
+                                                )}
+                                            </div>
                                         </div>
-                                        <div className="deadline_status_text">{deadlineText}
-                                            {deadline.isValid() && daysLeft >= 0 && (
-                                                <span className='days_left_text'>{daysLeft} day{daysLeft !== 1 ? 's' : ''} left!</span>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    <button type="button" className='edit_btn' onClick={(e) => {
-                                        handleEditClick(project, e)
-                                    }}>
-                                        <SquarePen className='pen_icon' color='black' size={14} />
-                                    </button>
-
-                                    <button type="button" className='delete_btn'
-                                        onClick={(e) => {
-                                            confirmDelete(project.id, e)
+                                    )}
+                                    <div className='crud_buttons'>
+                                        <button type="button" className='edit_btn' onClick={(e) => {
+                                            handleEditClick(project, e)
                                         }}>
-                                        <Trash2 className='trash_icon' color="white" size={14} />
-                                    </button>
+                                            <SquarePen className='pen_icon' color='black' size={14} />
+                                        </button>
 
+                                        <button type="button" className='delete_btn'
+                                            onClick={(e) => {
+                                                confirmDelete(project.id, e)
+                                            }}>
+                                            <Trash2 className='trash_icon' color="white" size={14} />
+                                        </button>
+                                    </div>
                                 </>
                             )}
                         </div>

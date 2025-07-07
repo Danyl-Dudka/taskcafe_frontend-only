@@ -15,7 +15,6 @@ export default function NewTaskModal({
     onChangeProjectName,
     onChangeDescription,
     onChangePriority,
-    onChangeDate,
     onChangeDeadline,
     onConfirm,
     onCancel
@@ -64,15 +63,6 @@ export default function NewTaskModal({
         >
             {modalMode === 'create' ? (
                 <>
-                    <DatePicker
-                        value={date}
-                        onChange={onChangeDate}
-                        className="select_date"
-                    />
-                    {errors.date &&
-                        <div className="error">{errors.date}</div>
-                    }
-
                     <Input
                         type="text"
                         value={projectName}

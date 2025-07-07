@@ -17,7 +17,7 @@ export default function TaskApp() {
     const [projectName, setProjectName] = useState('');
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState('');
-    const [date, setDate] = useState<Dayjs | null>(null);
+    const [date, setDate] = useState<Dayjs | null>(dayjs());
     const [deadline, setDeadline] = useState<Dayjs | null>(null);
     const [status, setStatus] = useState<string>('todo')
     const [viewTask, setViewTask] = useState<ProjectViewData | null>(null);
@@ -77,7 +77,7 @@ export default function TaskApp() {
             setDescription('');
             setPriority('');
             setStatus('todo');
-            setDate(null);
+            setDate(dayjs());
             setDeadline(null)
             setIsModalOpen(false)
         }
@@ -231,7 +231,7 @@ export default function TaskApp() {
                     <button type="button" className="reset_task_btn" onClick={showResetModal}>Reset projects</button>
                 </div>
             </div>
-            <TaskList projects={sortedProjects} onDelete={handleDeleteTask} onView={openViewModal} onEdit={handleEditTask} />
+            <TaskList projects={sortedProjects} onDelete={handleDeleteTask} onView={openViewModal} onEdit={handleEditTask} hideDeadline={false} />
 
             {sortedProjects.length === 0 && (
                 <div className="no_result">No result</div>

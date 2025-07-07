@@ -47,6 +47,7 @@ export default function CompletedProjectsPage() {
         setViewTask({
             ...project,
             date: project.date ? dayjs(project.date) : null,
+            deadline: project.deadline ? dayjs(project.deadline) : null,
         });
         setIsViewModalOpen(true);
     };
@@ -66,6 +67,7 @@ export default function CompletedProjectsPage() {
                     onView={openViewModal}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
+                    hideDeadline={true}
                 />
             </div>
 

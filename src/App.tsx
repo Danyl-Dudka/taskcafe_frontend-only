@@ -1,7 +1,7 @@
 import './App.css'
 import Content from './components/Content';
 import AuthProvider from './providers/AuthProvider';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
@@ -10,11 +10,11 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path='/*' element={<Content />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </AuthProvider>
 
       <ToastContainer

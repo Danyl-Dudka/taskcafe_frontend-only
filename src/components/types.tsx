@@ -11,6 +11,7 @@ export interface ProjectListProps {
     onDelete: (id: string) => void;
     onView: (project: ProjectFormData) => void;
     onEdit: (task: ProjectFormData) => void;
+    hideDeadline: boolean,
 }
 
 export type ModalMode = 'create' | 'reset';
@@ -39,6 +40,15 @@ export interface NewTaskModalProps {
 export interface User {
     password: string;
     fullname: string;
+}
+
+export interface ProjectFormDataDone {
+    id: string;
+    name: string;
+    description: string;
+    date: string;
+    priority: string;
+    status: string;
 }
 
 export interface ProjectFormData {
